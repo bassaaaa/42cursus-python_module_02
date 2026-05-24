@@ -12,10 +12,10 @@ def garden_operations(operation_number: int) -> None:
 
 
 def test_error_types() -> None:
-    for _ in range(5):
+    for i in range(5):
         try:
-            print(f"Testing operation {_}...")
-            garden_operations(_)
+            print(f"Testing operation {i}...")
+            garden_operations(i)
             print("Operation completed successfully!\n")
         except ValueError as e:
             print(f"Caught ValueError: {e}")
