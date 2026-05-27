@@ -1,68 +1,49 @@
 class GardenError(Exception):
     def __init__(self, message: str = "Unknown garden error") -> None:
-        super().__init__(message)
+        Exception.__init__(self, message)
 
 
 class PlantError(GardenError):
     def __init__(self, message: str = "Unknown plant error") -> None:
-        super().__init__(message)
+        Exception.__init__(self, message)
 
 
 class WaterError(GardenError):
     def __init__(self, message: str = "Unknown water error") -> None:
-        super().__init__(message)
+        Exception.__init__(self, message)
 
 
-def raise_error(error: GardenError) -> None:
-    raise error
+def raise_plant_error() -> None:
+    raise PlantError("The tomato plant is wilting!")
 
 
-def test_plant_error(error: PlantError) -> None:
-    print("\nTesting PlantError...")
-    try:
-        raise_error(error)
-    except PlantError as e:
-        print(f"Caught PlantError: {e}")
-
-
-def test_water_error(error: WaterError) -> None:
-    print("\nTesting WaterError...")
-    try:
-        raise_error(error)
-    except WaterError as e:
-        print(f"Caught WaterError: {e}")
-
-
-def test_all_garden_errors(errors: list[GardenError]) -> None:
-    print("\nTesting catching all garden errors...")
-    for error in errors:
-        try:
-            raise_error(error)
-        except GardenError as e:
-            print(f"Caught GardenError: {e}")
-
-
-def test_unknown_errors(errors: list[GardenError]) -> None:
-    print("\nTesting unknown errors...")
-    for error in errors:
-        try:
-            raise_error(error)
-        except PlantError as e:
-            print(f"Caught PlantError: {e}")
-        except WaterError as e:
-            print(f"Caught WaterError: {e}")
-        except GardenError as e:
-            print(f"Caught GardenError: {e}")
+def raise_water_error() -> None:
+    raise WaterError("Not enough water in the tank!")
 
 
 def test_custom_errors() -> None:
-    plant_error = PlantError("The tomato plant is wilting!")
-    water_error = WaterError("Not enough water in the tank!")
+    print("\nTesting PlantError...")
+    try:
+        raise_plant_error()
+    except PlantError as e:
+        print(f"Caught PlantError: {e}")
 
-    test_plant_error(plant_error)
-    test_water_error(water_error)
-    test_all_garden_errors([plant_error, water_error])
-    test_unknown_errors([PlantError(), WaterError(), GardenError()])
+    print("\nTesting WaterError...")
+    try:
+        raise_water_error()
+    except WaterError as e:
+        print(f"Caught WaterError: {e}")
+
+    print("\nTesting catching all garden errors...")
+    try:
+        raise_plant_error()
+    except GardenError as e:
+        print(f"Caught GardenError: {e}")
+
+    try:
+        raise_water_error()
+    except GardenError as e:
+        print(f"Caught GardenError: {e}")
 
 
 def main() -> None:
