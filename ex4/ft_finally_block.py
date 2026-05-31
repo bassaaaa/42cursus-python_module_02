@@ -8,11 +8,6 @@ class PlantError(GardenError):
         Exception.__init__(self, message)
 
 
-class WaterError(GardenError):
-    def __init__(self, message: str = "Unknown water error") -> None:
-        Exception.__init__(self, message)
-
-
 def water_plant(plant_name: str) -> None:
     if plant_name == plant_name.capitalize():
         print(f"Watering {plant_name}: [OK]")
