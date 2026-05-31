@@ -3,7 +3,7 @@ def input_temperature(temp_str: str) -> int:
     if temp < 0:
         raise ValueError(f"{temp}°C is too cold for plants (min 0°C)")
     elif temp > 40:
-        raise ValueError(f"{temp}°C is too hot for plants (min 40°C)")
+        raise ValueError(f"{temp}°C is too hot for plants (max 40°C)")
     return temp
 
 
@@ -19,7 +19,7 @@ def test_temperature() -> None:
 
 
 def main() -> None:
-    print("=== Garden Temperature ===\n")
+    print("=== Garden Temperature Checker ===\n")
     test_temperature()
     print("All tests completed - program didn't crash!")
 
